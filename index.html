@@ -6,28 +6,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
     :root {
-        --primary: #2196f3;
-        --background: #f7f9fc;
-        --text: #333;
-        --card-bg: #fff;
-        --border: #e0e6ed;
+        --primary: #0d1b2a; /* Dark background */
+        --accent: #d90429;  /* Dart red */
+        --accent2: #2ab7ca; /* Dart green / teal */
+        --text: #f8f9fa;
+        --card-bg: #1b263b;
+        --border: #415a77;
+        --points: #ffd60a; /* Gold-ish points */
     }
 
     body {
         font-family: "Segoe UI", Arial, sans-serif;
         margin: 0;
         padding: 20px;
-        background: var(--background);
+        background: var(--primary);
         color: var(--text);
     }
 
     h1 {
         text-align: center;
         margin-bottom: 25px;
-        color: var(--primary);
+        color: var(--accent);
         font-size: 1.8rem;
         font-weight: 700;
         letter-spacing: 0.5px;
+        text-shadow: 1px 1px 3px #000;
     }
 
     .table-container {
@@ -35,7 +38,7 @@
         margin: auto;
         background: var(--card-bg);
         border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.6);
         overflow: hidden;
     }
 
@@ -45,8 +48,10 @@
     }
 
     thead {
-        background: var(--primary);
-        color: white;
+        background: var(--accent2);
+        color: var(--primary);
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
     }
 
     th, td {
@@ -56,12 +61,21 @@
         border-bottom: 1px solid var(--border);
     }
 
-    tr:last-child td {
-        border-bottom: none;
+    tbody tr {
+        transition: background 0.3s;
+    }
+
+    tbody tr:nth-child(even) {
+        background: rgba(255, 255, 255, 0.05);
     }
 
     tbody tr:hover {
-        background: rgba(33, 150, 243, 0.07);
+        background: rgba(217, 4, 41, 0.3);
+    }
+
+    td.points {
+        font-weight: 700;
+        color: var(--points);
     }
 
     @media (max-width: 600px) {
@@ -95,8 +109,7 @@
     </table>
 </div>
 
-<script src="results.js?v=1"></script>
-
+<script src="results.js"></script>
 <script>
 function buildTable() {
     const tbody = document.querySelector("#leagueTable tbody");
@@ -120,7 +133,7 @@ function buildTable() {
                 <td>${team.won}</td>
                 <td>${team.draw}</td>
                 <td>${team.lost}</td>
-                <td><strong>${team.points}</strong></td>
+                <td class="points">${team.points}</td>
             </tr>
         `;
         tbody.insertAdjacentHTML("beforeend", row);
@@ -129,6 +142,11 @@ function buildTable() {
 
 buildTable();
 </script>
+<script>
+    const version = Date.now(); // Forces fresh load every visit
+    document.write(`<script src="results.js?v=${version}"><\/script>`);
+</script>
 
 </body>
 </html>
+
