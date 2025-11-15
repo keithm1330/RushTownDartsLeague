@@ -76,6 +76,7 @@
 
 <h1>Rush Town Darts League</h1>
 
+<!-- League Table -->
 <div class="table-container">
     <table id="leagueTable">
         <thead>
@@ -91,6 +92,7 @@
     </table>
 </div>
 
+<!-- Match Results -->
 <h2>Results</h2>
 <div class="table-container">
     <table id="resultsTable">
@@ -107,9 +109,25 @@
     </table>
 </div>
 
+<!-- 180s Table -->
+<h2>180s Table</h2>
+<div class="table-container">
+    <table id="highsTable">
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th>Team</th>
+                <th>180s</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
 <script>
-    // Load league results
     const version = Date.now();
+
+    // League Table
     const leagueScript = document.createElement('script');
     leagueScript.src = `results.js?v=${version}`;
     document.head.appendChild(leagueScript);
@@ -143,7 +161,7 @@
         });
     };
 
-    // Load match results
+    // Match Results
     const resultsScript = document.createElement('script');
     resultsScript.src = `matches.js?v=${version}`;
     document.head.appendChild(resultsScript);
@@ -160,6 +178,27 @@
                     <td>${match.scoreA}</td>
                     <td>${match.teamB}</td>
                     <td>${match.scoreB}</td>
+                </tr>
+            `;
+            tbody.insertAdjacentHTML("beforeend", row);
+        });
+    };
+
+    // 180s Table
+    const highsScript = document.createElement('script');
+    highsScript.src = `180s.js?v=${version}`;
+    document.head.appendChild(highsScript);
+
+    highsScript.onload = function() {
+        const tbody = document.querySelector("#highsTable tbody");
+        tbody.innerHTML = "";
+
+        highs.forEach(player => {
+            const row = `
+                <tr>
+                    <td>${player.player}</td>
+                    <td>${player.team}</td>
+                    <td>${player.hit}</td>
                 </tr>
             `;
             tbody.insertAdjacentHTML("beforeend", row);
