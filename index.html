@@ -1,65 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My GitHub Pages Site</title>
-
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-            color: #333;
-            text-align: center;
-            padding: 50px;
-        }
-
-        header {
-            background: #24292e;
-            color: white;
-            padding: 20px;
-            margin-bottom: 40px;
-        }
-
-        h1 {
-            margin: 0;
-        }
-
-        .container {
-            max-width: 700px;
-            margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        a.btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background: #2da44e;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-        }
-
-        a.btn:hover {
-            background: #22863a;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Darts League Table</title>
+<style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    table { width: 70%; border-collapse: collapse; margin: auto; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background: #f2f2f2; }
+    h1 { text-align: center; }
+</style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Website</h1>
-    </header>
 
-    <div class="container">
-        <p>This is a simple static website hosted using <strong>GitHub Pages</strong>.</p>
-        <p>You can edit this file to customize your site.</p>
+<h1>Darts League Table</h1>
 
-        <a class="btn" href="https://github.com">View my GitHub</a>
-    </div>
+<table id="leagueTable">
+    <thead>
+        <tr>
+            <th>Team</th>
+            <th>Won</th>
+            <th>Draw</th>
+            <th>Lost</th>
+            <th>Points</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script src="results.js"></script>
+<script>
+function buildTable() {
+    const tbody = document.querySelector("#leagueTable tbody");
+    tbody.innerHTML = "";
+
+    // Calculate points: 2 per win, 1 per draw
+    const processed = results.map(r => ({
+        ...r,
+        points: (r.won * 2) + (r.draw * 1)
+    }));
+
+    // Sort: Points → Wins → Draws
+    processed.sort((a, b) =>
+        b.points - a.points ||
+        b.won - a.won ||
+        b.draw - a.draw
+    );
+
+    processed.forEach(team => {
+        const row = `
+            <tr>
+                <td>${team.team}</td>
+                <td>${team.won}</td>
+                <td>${team.draw}</td>
+                <td>${team.lost}</td>
+                <td>${team.points}</td>
+            </tr>
+        `;
+        tbody.insertAdjacentHTML("beforeend", row);
+    });
+}
+
+buildTable();
+</script>
+
 </body>
 </html>
