@@ -6,13 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
     :root {
-        --primary: #0d1b2a; /* Dark background */
+        --primary: #ffffff; /* Light background */
         --accent: #d90429;  /* Dart red */
-        --accent2: #2ab7ca; /* Dart green / teal */
-        --text: #f8f9fa;
-        --card-bg: #1b263b;
-        --border: #415a77;
-        --points: #ffd60a; /* Gold-ish points */
+        --accent2: #2ab7ca; /* Dart green */
+        --text: #222222;
+        --card-bg: #f9f9f9;
+        --border: #e0e0e0;
+        --points: #ff9800; /* Gold-ish points */
     }
 
     body {
@@ -30,7 +30,6 @@
         font-size: 1.8rem;
         font-weight: 700;
         letter-spacing: 0.5px;
-        text-shadow: 1px 1px 3px #000;
     }
 
     .table-container {
@@ -38,7 +37,7 @@
         margin: auto;
         background: var(--card-bg);
         border-radius: 12px;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
         overflow: hidden;
     }
 
@@ -49,7 +48,7 @@
 
     thead {
         background: var(--accent2);
-        color: var(--primary);
+        color: #fff;
         text-transform: uppercase;
         letter-spacing: 0.8px;
     }
@@ -66,11 +65,11 @@
     }
 
     tbody tr:nth-child(even) {
-        background: rgba(255, 255, 255, 0.05);
+        background: #f1f1f1;
     }
 
     tbody tr:hover {
-        background: rgba(217, 4, 41, 0.3);
+        background: rgba(217, 4, 41, 0.1);
     }
 
     td.points {
@@ -109,44 +108,42 @@
     </table>
 </div>
 
-<script src="results.js"></script>
 <script>
-function buildTable() {
-    const tbody = document.querySelector("#leagueTable tbody");
-    tbody.innerHTML = "";
+    // Force fresh load every visit
+    const version = Date.now();
+    const script = document.createElement('script');
+    script.src = `results.js?v=${version}`;
+    document.head.appendChild(script);
 
-    const processed = results.map(r => ({
-        ...r,
-        points: (r.won * 2) + (r.draw * 1)
-    }));
+    script.onload = function() {
+        const tbody = document.querySelector("#leagueTable tbody");
+        tbody.innerHTML = "";
 
-    processed.sort((a, b) =>
-        b.points - a.points ||
-        b.won - a.won ||
-        b.draw - a.draw
-    );
+        const processed = results.map(r => ({
+            ...r,
+            points: (r.won * 2) + (r.draw * 1)
+        }));
 
-    processed.forEach(team => {
-        const row = `
-            <tr>
-                <td>${team.team}</td>
-                <td>${team.won}</td>
-                <td>${team.draw}</td>
-                <td>${team.lost}</td>
-                <td class="points">${team.points}</td>
-            </tr>
-        `;
-        tbody.insertAdjacentHTML("beforeend", row);
-    });
-}
+        processed.sort((a, b) =>
+            b.points - a.points ||
+            b.won - a.won ||
+            b.draw - a.draw
+        );
 
-buildTable();
-</script>
-<script>
-    const version = Date.now(); // Forces fresh load every visit
-    document.write(`<script src="results.js?v=${version}"><\/script>`);
+        processed.forEach(team => {
+            const row = `
+                <tr>
+                    <td>${team.team}</td>
+                    <td>${team.won}</td>
+                    <td>${team.draw}</td>
+                    <td>${team.lost}</td>
+                    <td class="points">${team.points}</td>
+                </tr>
+            `;
+            tbody.insertAdjacentHTML("beforeend", row);
+        });
+    };
 </script>
 
 </body>
 </html>
-
