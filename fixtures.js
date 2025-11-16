@@ -1,4 +1,22 @@
 const fixtures = [
+   {
+    "date": "14-Nov",
+    "match": "Round Towers vs Cilles A",
+    "venue": "Round Towers Lusk GAA",
+    "link": "https://www.dartsatlas.com/seasons/6sgqCZzg2Lk2/matchup/PKBhvBeuc8Xl"
+  },
+  {
+    "date": "14-Nov",
+    "match": "Cilles B vs Rivervalley",
+    "venue": "Cilles B home",
+    "link": "https://www.dartsatlas.com/seasons/6sgqCZzg2Lk2/matchup/EXpG4Zb84Gh8"
+  },
+  {
+    "date": "14-Nov",
+    "match": "The Strand vs Top Shop",
+    "venue": "Strand Bar Rush",
+    "link": "https://www.dartsatlas.com/seasons/6sgqCZzg2Lk2/matchup/g8otckgHCvbU"
+  },
   {
     "date": "21-Nov",
     "match": "Round Towers vs Top Shop Dart Team",
