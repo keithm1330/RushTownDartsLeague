@@ -124,7 +124,7 @@
     </table>
 </div>
 
-<!-- Fixtures Table (NEW) -->
+<!-- Fixtures Table -->
 <h2>Fixtures</h2>
 <div class="table-container">
     <table id="fixturesTable">
@@ -221,7 +221,7 @@
         });
     };
 
-    // Fixtures Table (NEW)
+    // Fixtures Table
     const fixturesScript = document.createElement('script');
     fixturesScript.src = `fixtures.js?v=${version}`;
     document.head.appendChild(fixturesScript);
@@ -236,7 +236,7 @@
                     <td>${f.date}</td>
                     <td>${f.match}</td>
                     <td>${f.venue}</td>
-                    <td><a href="${f.link}" target="_blank">${f.link}</a></td>
+                    <td><a href="${f.link}" target="_blank">Follow</a></td>
                 </tr>
             `;
             tbody.insertAdjacentHTML("beforeend", row);
@@ -246,3 +246,4 @@
 
 </body>
 </html>
+
