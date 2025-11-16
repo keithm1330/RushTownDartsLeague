@@ -3,7 +3,7 @@ const fixtures = [
     "date": "21-Nov",
     "match": "Round Towers vs Top Shop Dart Team",
     "venue": "The Top Shop",
-    "link": "LINK_HERE"
+    "link": "https://www.dartsatlas.com/seasons/6sgqCZzg2Lk2/matchup/6Oo40LuhisXa"
   },
   {
     "date": "21-Nov",
