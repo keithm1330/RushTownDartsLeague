@@ -1,4 +1,4 @@
-[
+const fixtures = [
   {
     "date": "21-Nov",
     "match": "Round Towers vs Top Shop Dart Team",
