@@ -234,4 +234,3 @@ const fixtures = [
     "link": "https://www.dartsatlas.com/seasons/6sgqCZzg2Lk2/matchup/ypbQsif7smzl"
   }
 ];
-
