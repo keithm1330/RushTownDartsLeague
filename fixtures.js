@@ -165,7 +165,7 @@ const fixtures = [
     "date": "27-Feb",
     "match": "Cricket Club Darts Team vs Top Shop Dart Team",
     "venue": "Rush Cricket Club",
-    "link": "https://www.dartsatlas.com/seasons/6sgqCZzg2Lk2/matchup/PlG0eurl1Q7O
+    "link": "https://www.dartsatlas.com/seasons/6sgqCZzg2Lk2/matchup/PlG0eurl1Q7O"
   },
   {
     "date": "27-Feb",
@@ -233,4 +233,5 @@ const fixtures = [
     "venue": "Cilles A Home",
     "link": "https://www.dartsatlas.com/seasons/6sgqCZzg2Lk2/matchup/ypbQsif7smzl"
   }
-]
+];
+
